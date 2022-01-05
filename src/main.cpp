@@ -88,16 +88,15 @@ void autonomous(void) {
   //Lowers back lift
   BackLift.spinFor(reverse,655,deg, 100, rpm);
   wait(0.3,sec);
-  //Turn right to swipe rings out and to get in position
-  Drivetrain.turnFor(right,128, degrees, 200, rpm);
+  //Turn right to swipe rings out of way
+  Drivetrain.turnFor(right,144, degrees, 200, rpm);
+  //Get in position
+  Drivetrain.driveFor(reverse, 3, inches, 200, rpm);
+  Drivetrain.turnFor(left,16, degrees, 200, rpm);
   wait(0.5,sec);
   //Backs out fast to get red goal
-  Drivetrain.driveFor(reverse,16, inches, 200, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 160, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 110, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 70, rpm);
-  Drivetrain.driveFor(reverse, 2, inches, 50, rpm);
-  
+  Drivetrain.driveFor(reverse,16, inches, 150, rpm);
+  Drivetrain.driveFor(reverse, 1, inches, 100, rpm);
   //Fully lifts back lift to store goal
   BackLift.spinFor(forward, 670, deg, 100, rpm);
   wait (0.5,sec);
@@ -125,7 +124,7 @@ void autonomous(void) {
   //Drives backwards to platform wall
   Drivetrain.driveFor(reverse,48, inches,100,rpm);
   Drivetrain.driveFor(reverse, 2, inches, 100, rpm, false);
-  wait(0.3, sec);
+  wait(0.4, sec);
   //Turn to calibrate
   Drivetrain.turnFor(left,55,deg,100,rpm);
   //
@@ -134,20 +133,20 @@ void autonomous(void) {
   Drivetrain.turnFor(left,40, degrees,100, rpm);
   Drivetrain.driveFor(forward, 7, inches, 100, rpm);
   BackLift.setStopping(hold);
-  DrivetrainInertial.calibrate();
-  waitUntil(!DrivetrainInertial.isCalibrating());
   FrontLift.spinFor(reverse,300,degrees,50,rpm);
   Drivetrain.driveFor(forward,25,inches);
   FrontLift.spinFor(forward,290, degrees, 25, rpm, false);
   Drivetrain.turnFor(right, 9, degrees, 50, rpm);
   //drive up ramp
   while (DrivetrainInertial.roll() > 24 || DrivetrainInertial.roll() < -24) {
-    
+    Brain.Screen.clearScreen();
+    Brain.Screen.newLine();
+    Brain.Screen.print(DrivetrainInertial.roll());
+    wait(2, msec);
     Drivetrain.drive(forward);
   }
   Drivetrain.stop(hold);
-  Brain.Screen.print("Time:");
-  Brain.Screen.print(Brain.timer(msec));
+  
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
