@@ -7,7 +7,10 @@ extern smartdrive Drivetrain;
 extern motor FrontLift;
 extern motor BackLift;
 extern inertial DrivetrainInertial;
-
+extern motor rightMotorA;
+extern motor rightMotorB;
+extern motor leftMotorA;
+extern motor leftMotorB;
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

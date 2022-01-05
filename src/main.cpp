@@ -55,7 +55,7 @@ void pre_auton(void) {
 int hector = 0;
 double lol = 0;
 void autonomous(void) {
-  
+  Brain.resetTimer();
   
   ////Picks up blue goal out of ramp
   //Lowers front lift
@@ -66,9 +66,9 @@ void autonomous(void) {
   Drivetrain.driveFor(forward, 20, inches, 150, rpm);
   //Lifts up goal
   FrontLift.spinFor(forward,290,deg);
-
+   
   //turn to right position
-  
+ 
   Drivetrain.turnFor(left, 87, deg, 200, rpm);
 
   //Push goal to other side
@@ -93,9 +93,9 @@ void autonomous(void) {
   wait(0.5,sec);
   //Backs out fast to get red goal
   Drivetrain.driveFor(reverse,16, inches, 200, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 170, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 140, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 100, rpm);
+  Drivetrain.driveFor(reverse, 1, inches, 160, rpm);
+  Drivetrain.driveFor(reverse, 1, inches, 110, rpm);
+  Drivetrain.driveFor(reverse, 1, inches, 70, rpm);
   Drivetrain.driveFor(reverse, 2, inches, 50, rpm);
   
   //Fully lifts back lift to store goal
@@ -123,7 +123,9 @@ void autonomous(void) {
   //Turn so back faces the platform wall
   Drivetrain.turnFor(right,90,deg,100,rpm);
   //Drives backwards to platform wall
-  Drivetrain.driveFor(reverse,50, inches,100,rpm);
+  Drivetrain.driveFor(reverse,48, inches,100,rpm);
+  Drivetrain.driveFor(reverse, 2, inches, 100, rpm, false);
+  wait(0.3, sec);
   //Turn to calibrate
   Drivetrain.turnFor(left,55,deg,100,rpm);
   //
@@ -132,20 +134,20 @@ void autonomous(void) {
   Drivetrain.turnFor(left,40, degrees,100, rpm);
   Drivetrain.driveFor(forward, 7, inches, 100, rpm);
   BackLift.setStopping(hold);
-  DrivetrainInertial.resetRotation();
+  DrivetrainInertial.calibrate();
+  waitUntil(!DrivetrainInertial.isCalibrating());
   FrontLift.spinFor(reverse,300,degrees,50,rpm);
   Drivetrain.driveFor(forward,25,inches);
   FrontLift.spinFor(forward,290, degrees, 25, rpm, false);
-  Drivetrain.turnFor(right, 10, degrees, 50, rpm);
+  Drivetrain.turnFor(right, 9, degrees, 50, rpm);
   //drive up ramp
   while (DrivetrainInertial.roll() > 24 || DrivetrainInertial.roll() < -24) {
-    Brain.Screen.clearScreen();
-    Brain.Screen.newLine();
-    Brain.Screen.print(DrivetrainInertial.roll());
+    
     Drivetrain.drive(forward);
   }
   Drivetrain.stop(hold);
-
+  Brain.Screen.print("Time:");
+  Brain.Screen.print(Brain.timer(msec));
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
