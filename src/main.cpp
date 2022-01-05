@@ -89,14 +89,11 @@ void autonomous(void) {
   BackLift.spinFor(reverse,655,deg, 100, rpm);
   wait(0.3,sec);
   //Turn right to swipe rings out of way
-  Drivetrain.turnFor(right,144, degrees, 200, rpm);
+  Drivetrain.turnFor(right,128, degrees, 200, rpm);
   //Get in position
-  Drivetrain.driveFor(reverse, 3, inches, 200, rpm);
-  Drivetrain.turnFor(left,16, degrees, 200, rpm);
-  wait(0.5,sec);
-  //Backs out fast to get red goal
-  Drivetrain.driveFor(reverse,16, inches, 150, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 100, rpm);
+  Drivetrain.driveFor(reverse, 21, inches, 200, rpm);
+  Drivetrain.driveFor(reverse, 1, inches, 125,rpm);
+  Drivetrain.driveFor(reverse, 1, inches, 100,rpm);
   //Fully lifts back lift to store goal
   BackLift.spinFor(forward, 670, deg, 100, rpm);
   wait (0.5,sec);
@@ -105,9 +102,9 @@ void autonomous(void) {
   Drivetrain.driveFor(forward,2, inches,200, rpm);
   Drivetrain.driveFor(reverse,2,inches,200,rpm);
   //Turns a little to face tall branch
-  Drivetrain.turnFor(left,12.5,deg,100,rpm);
+  Drivetrain.turnFor(left,10,deg,100,rpm);
   //Move forward to tall branch
-  Drivetrain.driveFor(60,inches,100,rpm);
+  Drivetrain.driveFor(61,inches,100,rpm);
   wait (1,sec);
   //Lifts high branch
   FrontLift.spinFor(forward,270, degrees,50,rpm);
@@ -132,11 +129,12 @@ void autonomous(void) {
 
   Drivetrain.turnFor(left,40, degrees,100, rpm);
   Drivetrain.driveFor(forward, 7, inches, 100, rpm);
+  Drivetrain.turnFor(right,8,degrees,50,rpm);
   BackLift.setStopping(hold);
   FrontLift.spinFor(reverse,300,degrees,50,rpm);
   Drivetrain.driveFor(forward,25,inches);
   FrontLift.spinFor(forward,290, degrees, 25, rpm, false);
-  Drivetrain.turnFor(right, 9, degrees, 50, rpm);
+  
   //drive up ramp
   while (DrivetrainInertial.roll() > 24 || DrivetrainInertial.roll() < -24) {
     Brain.Screen.clearScreen();
