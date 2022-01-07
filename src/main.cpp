@@ -55,6 +55,7 @@ void pre_auton(void) {
 int hector = 0;
 double lol = 0;
 void autonomous(void) {
+  
   Brain.resetTimer();
   
   ////Picks up blue goal out of ramp
@@ -74,8 +75,8 @@ void autonomous(void) {
   //Push goal to other side
 
   //Pushes goal to other side
-  Drivetrain.driveFor(forward,100, inches, 150, rpm);
-  wait (1, sec);
+  Drivetrain.driveFor(forward,100, inches, 170, rpm);
+  wait (1,sec);
 
   //gets red goal to storage
 
@@ -102,14 +103,14 @@ void autonomous(void) {
   Drivetrain.driveFor(forward,2, inches,200, rpm);
   Drivetrain.driveFor(reverse,2,inches,200,rpm);
   //Turns a little to face tall branch
-  Drivetrain.turnFor(left,10,deg,100,rpm);
+  Drivetrain.turnFor(left,13                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,deg,100,rpm);
   //Move forward to tall branch
-  Drivetrain.driveFor(61,inches,100,rpm);
+  Drivetrain.driveFor(61.5,inches,100,rpm);
   wait (1,sec);
   //Lifts high branch
-  FrontLift.spinFor(forward,270, degrees,50,rpm);
+  FrontLift.spinFor(forward,270, degrees,100,rpm);
   //Lowers back lift
-  BackLift.spinFor(reverse,665,deg,100,rpm);
+  BackLift.spinFor(reverse,665,deg,100,rpm);                                                                                                                                                                                                                                                                            
   //Turn so backlift faces the neutral goal
   Drivetrain.turnFor(145,degrees,100,rpm);
   //Drive backwards to intake goal
@@ -125,18 +126,22 @@ void autonomous(void) {
   //Turn to calibrate
   Drivetrain.turnFor(left,55,deg,100,rpm);
   //
-  Drivetrain.driveFor(reverse,10, inches, 100, rpm);
+  Drivetrain.driveFor(reverse,8, inches, 100, rpm);
+  Drivetrain.driveFor(reverse,2, inches, 100, rpm, false);
+  wait(0.4, sec);
 
   Drivetrain.turnFor(left,40, degrees,100, rpm);
   Drivetrain.driveFor(forward, 7, inches, 100, rpm);
   Drivetrain.turnFor(right,8,degrees,50,rpm);
+  
+  DrivetrainInertial.resetRotation();
   BackLift.setStopping(hold);
   FrontLift.spinFor(reverse,300,degrees,50,rpm);
-  Drivetrain.driveFor(forward,25,inches);
+  Drivetrain.driveFor(forward,39,inches);
   FrontLift.spinFor(forward,290, degrees, 25, rpm, false);
   
   //drive up ramp
-  while (DrivetrainInertial.roll() > 24 || DrivetrainInertial.roll() < -24) {
+  while (DrivetrainInertial.roll() > 23.1 || DrivetrainInertial.roll() < -23.1) {
     Brain.Screen.clearScreen();
     Brain.Screen.newLine();
     Brain.Screen.print(DrivetrainInertial.roll());
@@ -181,6 +186,7 @@ void usercontrol(void) {
 // Main will set up the competition functions and callbacks.
 //
 int main() {
+  
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
