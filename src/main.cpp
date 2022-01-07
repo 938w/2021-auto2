@@ -57,7 +57,7 @@ double lol = 0;
 void autonomous(void) {
   
   Brain.resetTimer();
-  
+
   ////Picks up blue goal out of ramp
   //Lowers front lift
   FrontLift.spinFor(reverse, 565, deg, 100, rpm);
@@ -75,7 +75,7 @@ void autonomous(void) {
   //Push goal to other side
 
   //Pushes goal to other side
-  Drivetrain.driveFor(forward,100, inches, 170, rpm);
+  Drivetrain.driveFor(forward,100, inches, 150, rpm);
   wait (1,sec);
 
   //gets red goal to storage
@@ -90,7 +90,7 @@ void autonomous(void) {
   BackLift.spinFor(reverse,655,deg, 100, rpm);
   wait(0.3,sec);
   //Turn right to swipe rings out of way
-  Drivetrain.turnFor(right,128, degrees, 200, rpm);
+  Drivetrain.turnFor(right,125, degrees, 200, rpm);
   //Get in position
   Drivetrain.driveFor(reverse, 21, inches, 200, rpm);
   Drivetrain.driveFor(reverse, 1, inches, 125,rpm);
@@ -133,7 +133,6 @@ void autonomous(void) {
   Drivetrain.turnFor(left,40, degrees,100, rpm);
   Drivetrain.driveFor(forward, 7, inches, 100, rpm);
   Drivetrain.turnFor(right,8,degrees,50,rpm);
-  
   DrivetrainInertial.resetRotation();
   BackLift.setStopping(hold);
   FrontLift.spinFor(reverse,300,degrees,50,rpm);
@@ -141,7 +140,7 @@ void autonomous(void) {
   FrontLift.spinFor(forward,290, degrees, 25, rpm, false);
   
   //drive up ramp
-  while (DrivetrainInertial.roll() > 23.1 || DrivetrainInertial.roll() < -23.1) {
+  while (DrivetrainInertial.roll() > 23.2 || DrivetrainInertial.roll() < -23.2) {
     Brain.Screen.clearScreen();
     Brain.Screen.newLine();
     Brain.Screen.print(DrivetrainInertial.roll());
