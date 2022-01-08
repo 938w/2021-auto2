@@ -52,6 +52,11 @@ void pre_auton(void) {
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
+double a = 0;
+double b = 0;
+double c = 0;
+double d = 0;
+double e = 0;
 int hector = 0;
 double lol = 0;
 void autonomous(void) {
@@ -103,7 +108,7 @@ void autonomous(void) {
   Drivetrain.driveFor(forward,2, inches,200, rpm);
   Drivetrain.driveFor(reverse,2,inches,200,rpm);
   //Turns a little to face tall branch
-  Drivetrain.turnFor(left,13                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,deg,100,rpm);
+  Drivetrain.turnFor(left,12.5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,deg,100,rpm);
   //Move forward to tall branch
   Drivetrain.driveFor(61.5,inches,100,rpm);
   wait (1,sec);
@@ -123,32 +128,64 @@ void autonomous(void) {
   Drivetrain.driveFor(reverse,48, inches,100,rpm);
   Drivetrain.driveFor(reverse, 2, inches, 100, rpm, false);
   wait(0.4, sec);
+  
+  FrontLift.setStopping(hold);
+  BackLift.setStopping(hold);
   //Turn to calibrate
-  Drivetrain.turnFor(left,55,deg,100,rpm);
+  Drivetrain.turnFor(left,65,deg,100,rpm);
   //
-  Drivetrain.driveFor(reverse,8, inches, 100, rpm);
+  Drivetrain.driveFor(reverse,11, inches, 100, rpm);
   Drivetrain.driveFor(reverse,2, inches, 100, rpm, false);
   wait(0.4, sec);
 
-  Drivetrain.turnFor(left,40, degrees,100, rpm);
-  Drivetrain.driveFor(forward, 7, inches, 100, rpm);
-  Drivetrain.turnFor(right,8,degrees,50,rpm);
+
+  Drivetrain.turnFor(left,20, degrees,100, rpm);
+  Drivetrain.driveFor(forward, 16, inches, 100, rpm);
+  
+  
   DrivetrainInertial.resetRotation();
   BackLift.setStopping(hold);
-  FrontLift.spinFor(reverse,300,degrees,50,rpm);
-  Drivetrain.driveFor(forward,39,inches);
-  FrontLift.spinFor(forward,290, degrees, 25, rpm, false);
-  
-  //drive up ramp
-  while (DrivetrainInertial.roll() > 23.2 || DrivetrainInertial.roll() < -23.2) {
+  FrontLift.spinFor(reverse, 270 ,degrees, 25 ,rpm);
+  Drivetrain.drive(forward);
+  wait(3, sec);
+  Drivetrain.stop(hold);
+  FrontLift.spinFor(forward, 290, degrees, 100, rpm);
+
+  while (true) {
     Brain.Screen.clearScreen();
     Brain.Screen.newLine();
     Brain.Screen.print(DrivetrainInertial.roll());
-    wait(2, msec);
-    Drivetrain.drive(forward);
+  // ...............................................
+    if (DrivetrainInertial.roll() > -22.2) {
+      Drivetrain.drive(forward);
+      wait(2, msec);
+    } else {
+      break;
+    }
   }
-  Drivetrain.stop(hold);
-  
+ 
+  //drive up ramp
+  while(true) {
+    while (DrivetrainInertial.roll() > 22.22 || DrivetrainInertial.roll() < -22.22) {
+        Brain.Screen.clearScreen();
+        Brain.Screen.newLine();
+        Brain.Screen.print(DrivetrainInertial.roll());
+        wait(1, msec);
+        Drivetrain.drive(forward, 50, rpm);
+    }
+
+    Drivetrain.driveFor(reverse, 4.4, inches, 100, rpm);
+
+    Drivetrain.stop(hold); 
+    if (DrivetrainInertial.roll() < 2.5 || DrivetrainInertial.roll() > -2.5) {
+      break;
+    }
+  }
+
+ 
+  Brain.Screen.clearScreen();
+    Brain.Screen.newLine();
+    Brain.Screen.print(DrivetrainInertial.roll());
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
