@@ -92,7 +92,7 @@ void autonomous(void) {
   //Drive back more
   Drivetrain.driveFor(reverse, 20, inches, 100, rpm);
   //Lowers back lift
-  BackLift.spinFor(reverse,655,deg, 100, rpm);
+  BackLift.spinFor(reverse,625,deg, 100, rpm);
   wait(0.3,sec);
   //Turn right to swipe rings out of way
   Drivetrain.turnFor(right,125, degrees, 200, rpm);
@@ -101,7 +101,7 @@ void autonomous(void) {
   Drivetrain.driveFor(reverse, 1, inches, 125,rpm);
   Drivetrain.driveFor(reverse, 1, inches, 100,rpm);
   //Fully lifts back lift to store goal
-  BackLift.spinFor(forward, 670, deg, 100, rpm);
+  BackLift.spinFor(forward, 690, deg, 100, rpm);
   wait (0.5,sec);
   BackLift.setStopping(brakeType::hold);
   //Wiggle to get red goal in, incase its not
@@ -141,15 +141,17 @@ void autonomous(void) {
   wait(0.4, sec);
 
 
-  Drivetrain.turnFor(left,20, degrees,100, rpm);
-  Drivetrain.driveFor(forward, 16, inches, 100, rpm);
+  Drivetrain.turnFor(left,40, degrees,100, rpm);
+  Drivetrain.driveFor(forward, 7, inches, 100, rpm);
+  Drivetrain.turnFor(right,20,degrees,100,rpm);
+  Drivetrain.driveFor(forward,8, inches,100,rpm);
   
   
   DrivetrainInertial.resetRotation();
   BackLift.setStopping(hold);
   FrontLift.spinFor(reverse, 270 ,degrees, 25 ,rpm);
   Drivetrain.drive(forward);
-  wait(3, sec);
+  wait(3.2, sec);
   Drivetrain.stop(hold);
   FrontLift.spinFor(forward, 290, degrees, 100, rpm);
 
