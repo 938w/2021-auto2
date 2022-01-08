@@ -75,7 +75,7 @@ void autonomous(void) {
    
   //turn to right position
  
-  Drivetrain.turnFor(left, 87, deg, 200, rpm);
+  Drivetrain.turnFor(left, 83, deg, 200, rpm);
 
   //Push goal to other side
 
@@ -108,7 +108,7 @@ void autonomous(void) {
   Drivetrain.driveFor(forward,2, inches,200, rpm);
   Drivetrain.driveFor(reverse,2,inches,200,rpm);
   //Turns a little to face tall branch
-  Drivetrain.turnFor(left,12.5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,deg,100,rpm);
+  Drivetrain.turnFor(left,13.5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,deg,100,rpm);
   //Move forward to tall branch
   Drivetrain.driveFor(51.5,inches,100,rpm);
   Drivetrain.driveFor(10,inches,50,rpm);
