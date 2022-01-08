@@ -75,7 +75,7 @@ void autonomous(void) {
    
   //turn to right position
  
-  Drivetrain.turnFor(left, 83, deg, 200, rpm);
+  Drivetrain.turnFor(left, 85, deg, 200, rpm);
 
   //Push goal to other side
 
@@ -93,14 +93,14 @@ void autonomous(void) {
   Drivetrain.driveFor(reverse, 20, inches, 100, rpm);
   //Lowers back lift
   BackLift.spinFor(reverse,635,deg, 100, rpm);
-  wait(0.2,sec);
+  wait(0.4,sec);
   //Turn right to swipe rings out of way
   Drivetrain.turnFor(right,125, degrees, 200, rpm);
   //Get in position
   Drivetrain.driveFor(reverse, 21, inches, 200, rpm);
   Drivetrain.driveFor(reverse, 1, inches, 125,rpm);
   Drivetrain.driveFor(reverse, 1, inches, 100,rpm);
-  //Fully lifts back lift to store goal
+  //Fully lifts back lift to                                                                                                                                                                                                                                  ` `store goal
   BackLift.spinFor(forward, 699, deg, 100, rpm);
   wait (0.5,sec);
   BackLift.setStopping(brakeType::hold);
@@ -108,10 +108,9 @@ void autonomous(void) {
   Drivetrain.driveFor(forward,2, inches,200, rpm);
   Drivetrain.driveFor(reverse,2,inches,200,rpm);
   //Turns a little to face tall branch
-  Drivetrain.turnFor(left,13.5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,deg,100,rpm);
+  Drivetrain.turnFor(left,13,deg,100,rpm);
   //Move forward to tall branch
   Drivetrain.driveFor(51.5,inches,100,rpm);
-  Drivetrain.driveFor(10,inches,50,rpm);
   wait (0.7,sec);
   //Lifts high branch
   FrontLift.spinFor(forward,270, degrees,100,rpm);
