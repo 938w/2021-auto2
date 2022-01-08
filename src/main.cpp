@@ -110,8 +110,9 @@ void autonomous(void) {
   //Turns a little to face tall branch
   Drivetrain.turnFor(left,12.5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,deg,100,rpm);
   //Move forward to tall branch
-  Drivetrain.driveFor(61.5,inches,100,rpm);
-  wait (1,sec);
+  Drivetrain.driveFor(51.5,inches,100,rpm);
+  Drivetrain.driveFor(10,inches,50,rpm);
+  wait (0.7,sec);
   //Lifts high branch
   FrontLift.spinFor(forward,270, degrees,100,rpm);
   //Lowers back lift
@@ -119,7 +120,8 @@ void autonomous(void) {
   //Turn so backlift faces the neutral goal
   Drivetrain.turnFor(145,degrees,100,rpm);
   //Drive backwards to intake goal
-  Drivetrain.driveFor(reverse,32,inches,200,rpm);
+  Drivetrain.driveFor(reverse,27,inches,200,rpm);
+  Drivetrain.driveFor(reverse,5,inches,180 ,rpm);
   //BackLift lifts up goal
   BackLift.spinFor(forward,350,degrees,100,rpm);
   //Turn so back faces the platform wall
