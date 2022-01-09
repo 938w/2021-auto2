@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+build/AutonSkills.map
+build/AutonSkills.elf
+build/AutonSkills.bin
