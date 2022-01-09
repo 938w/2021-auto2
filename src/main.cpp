@@ -10,10 +10,10 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// Drivetrain           drivetrain    1, 3, 2, 4, 9   
-// FrontLift            motor         5               
-// BackLift             motor         8               
-// Inertial10           inertial      10              
+// Drivetrain           drivetrain    1, 3, 2, 4, 9
+// FrontLift            motor         5
+// BackLift             motor         8
+// Inertial10           inertial      10
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -60,106 +60,113 @@ double e = 0;
 int hector = 0;
 double lol = 0;
 void autonomous(void) {
-  
+
   Brain.resetTimer();
 
   ////Picks up blue goal out of ramp
-  //Lowers front lift
+  // Lowers front lift
   FrontLift.spinFor(reverse, 565, deg, 100, rpm);
-  //hold front lift
+  // hold front lift
   FrontLift.setStopping(brakeType::hold);
-  //move forward to ramp
-  Drivetrain.driveFor(forward, 20, inches, 150, rpm);
-  //Lifts up goal
-  FrontLift.spinFor(forward,290,deg);
-   
-  //turn to right position
- 
+  // move forward to ramp
+  Drivetrain.driveFor(forward, 20, inches, 170, rpm);
+  // Lifts up goal
+  FrontLift.spinFor(forward, 290, deg);
+
+  // turn to right position
   Drivetrain.turnFor(left, 85, deg, 200, rpm);
+  // run into wall to calibrate NOT TUNED
+  Drivetrain.drive(reverse, 200, rpm);
+  wait(0.5, sec);
+  Drivetrain.stop();
+  
+  // Push goal to other side
+  Drivetrain.driveFor(forward, 100, inches, 150, rpm);
+  wait(1, sec);
 
-  //Push goal to other side
-
-  //Pushes goal to other side
-  Drivetrain.driveFor(forward,100, inches, 150, rpm);
-  wait (1,sec);
-
-  //gets red goal to storage
-
-  //Back up from neutral goal a little
+  // Back up from neutral goal a little
   Drivetrain.driveFor(reverse, 10, inches, 100, rpm);
-  //Lowers blue goal down
-  FrontLift.spinFor(reverse, 295, deg, 100,  rpm);
-  //Drive back more
-  Drivetrain.driveFor(reverse, 20, inches, 100, rpm);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-  //Lowers back lift
-  BackLift.spinFor(reverse,635,deg, 100, rpm);
+  // Lowers blue goal down
+  FrontLift.spinFor(reverse, 295, deg, 100, rpm);
+  // Drive back more
+  Drivetrain.driveFor(reverse, 20, inches, 100, rpm);
+  // Lowers back lift
+  BackLift.spinFor(reverse, 635, deg, 100, rpm);
   wait(0.35, sec);
-  //Turn right to swipe rings out of way
-  Drivetrain.turnFor(right,125, degrees, 200, rpm);
-  //Get in position
+  // Turn right to swipe rings out of way
+  Drivetrain.turnFor(right, 125, degrees, 200, rpm);
+  // Get in position
   Drivetrain.driveFor(reverse, 21, inches, 200, rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 125,rpm);
-  Drivetrain.driveFor(reverse, 1, inches, 100,rpm);
-  //Fully lifts back lift to                                                                                                                                                                                                                                  
+  Drivetrain.driveFor(reverse, 1, inches, 125, rpm);
+  Drivetrain.driveFor(reverse, 1, inches, 100, rpm);
+  // Fully lifts back lift to store red goal
   BackLift.spinFor(forward, 699, deg, 100, rpm);
-  wait (0.5,sec);
+  wait(0.5, sec);
   BackLift.setStopping(brakeType::hold);
-  //Wiggle to get red goal in, incase its not
-  Drivetrain.driveFor(forward,2, inches,200, rpm);
-  Drivetrain.driveFor(reverse,2,inches,200,rpm);
-  //Turns a little to face tall branch
-  Drivetrain.turnFor(left,13,deg,100,rpm);
-  //Move forward to tall branch
-  Drivetrain.driveFor(51.5,inches,100,rpm);
-  Drivetrain.driveFor(10,inches,50,rpm);
-  wait (0.7,sec);
-  //Lifts high branch
-  FrontLift.spinFor(forward,270, degrees,100,rpm);
-  //Lowers back lift
-  BackLift.spinFor(reverse,665,deg,100,rpm);                                                                                                                                                                                                                                                                            
-  //Turn so backlift faces the neutral goal
-  Drivetrain.turnFor(145,degrees,100,rpm);
-  //Drive backwards to intake goal
-  Drivetrain.driveFor(reverse,27,inches,200,rpm);
-  Drivetrain.driveFor(reverse,5,inches,180 ,rpm);
-  //BackLift lifts up goal
-  BackLift.spinFor(forward,350,degrees,100,rpm);
-  //Turn so back faces the platform wall
-  Drivetrain.turnFor(right,90,deg,100,rpm);
-  //Drives backwards to platform wall
-  Drivetrain.driveFor(reverse,48, inches,100,rpm);
+  // Wiggle to get red goal in, incase its not
+  Drivetrain.driveFor(forward, 2, inches, 200, rpm);
+  Drivetrain.driveFor(reverse, 2, inches, 200, rpm);
+
+  // Turns a little to face tall branch
+  Drivetrain.turnFor(left, 13, deg, 100, rpm);
+  // Move forward to tall branch
+  Drivetrain.driveFor(51.5, inches, 100, rpm);
+  Drivetrain.driveFor(10, inches, 50, rpm);
+  wait(0.7, sec);
+  // Lifts high branch
+  FrontLift.spinFor(forward, 270, degrees, 100, rpm);
+  // Lowers back lift
+  BackLift.spinFor(reverse, 665, deg, 100, rpm);
+
+  // Turn so backlift faces the neutral goal
+  Drivetrain.turnFor(145, degrees, 100, rpm);
+  // Drive backwards to intake goal
+  Drivetrain.driveFor(reverse, 27, inches, 200, rpm);
+  Drivetrain.driveFor(reverse, 5, inches, 180, rpm);
+  // BackLift lifts up goal
+  BackLift.spinFor(forward, 350, degrees, 100, rpm);
+  // Turn so back faces the platform wall
+  Drivetrain.turnFor(right, 90, deg, 100, rpm);
+  // Drives backwards to platform wall
+  Drivetrain.driveFor(reverse, 48, inches, 100, rpm);
   Drivetrain.driveFor(reverse, 2, inches, 100, rpm, false);
   wait(0.4, sec);
-  
+
   FrontLift.setStopping(hold);
   BackLift.setStopping(hold);
-  //Turn to calibrate
-  Drivetrain.turnFor(left,65,deg,100,rpm);
-  //
-  Drivetrain.driveFor(reverse,11, inches, 100, rpm);
-  Drivetrain.driveFor(reverse,2, inches, 100, rpm, false);
+  // Turn to calibrate
+  Drivetrain.turnFor(left, 65, deg, 100, rpm);
+  // Drive to wall to calibrate
+  Drivetrain.driveFor(reverse, 11, inches, 100, rpm);
+  Drivetrain.driveFor(reverse, 2, inches, 100, rpm, false);
   wait(0.4, sec);
+  // Turn to corner
 
-
-  Drivetrain.turnFor(left,40, degrees,100, rpm);
+  Drivetrain.turnFor(left, 40, degrees, 100, rpm);
+  // Drive to corner
   Drivetrain.driveFor(forward, 7, inches, 100, rpm);
-  Drivetrain.turnFor(right,20,degrees,100,rpm);
-  Drivetrain.driveFor(forward,8, inches,100,rpm);
-  
-  
+  // turn to face platform
+  Drivetrain.turnFor(right, 20, degrees, 100, rpm);
+  // drive to platform
+  Drivetrain.driveFor(forward, 8, inches, 100, rpm);
+
+  // reset inertial
   DrivetrainInertial.resetRotation();
   BackLift.setStopping(hold);
-  FrontLift.spinFor(reverse, 240 ,degrees, 25 ,rpm);
+  // push down the ramp
+  FrontLift.spinFor(reverse, 240, degrees, 25, rpm);
+  // drive up ramp
   Drivetrain.drive(forward);
   wait(3.2, sec);
   Drivetrain.stop(hold);
-  FrontLift.spinFor(forward, 270, degrees, 100, rpm);
-
+  // lift up frontlift
+  FrontLift.spinFor(forward, 270, degrees, 100, rpm, false);
+  // get on ramp
   while (true) {
     Brain.Screen.clearScreen();
     Brain.Screen.newLine();
     Brain.Screen.print(DrivetrainInertial.roll());
-  // ...............................................
+    // ...............................................
     if (DrivetrainInertial.roll() > -22.2) {
       Drivetrain.drive(forward);
       wait(2, msec);
@@ -167,32 +174,32 @@ void autonomous(void) {
       break;
     }
   }
- 
-  //drive up ramp
-  while(true) {
-    while (DrivetrainInertial.roll() > 22.22 || DrivetrainInertial.roll() < -22.22) {
-        Brain.Screen.clearScreen();
-        Brain.Screen.newLine();
-        Brain.Screen.print(DrivetrainInertial.roll());
-        wait(1, msec);
-        Drivetrain.drive(forward, 50, rpm);
+
+  // drive up ramp
+  while (true) {
+    while (DrivetrainInertial.roll() > 22.22 ||
+           DrivetrainInertial.roll() < -22.22) {
+      Brain.Screen.clearScreen();
+      Brain.Screen.newLine();
+      Brain.Screen.print(DrivetrainInertial.roll());
+      wait(1, msec);
+      Drivetrain.drive(forward, 50, rpm);
     }
 
     Drivetrain.driveFor(reverse, 4.4, inches, 100, rpm);
 
-    Drivetrain.stop(hold); 
+    Drivetrain.stop(hold);
     if (DrivetrainInertial.roll() < 2.5 || DrivetrainInertial.roll() > -2.5) {
       break;
     }
   }
 
- 
   Brain.Screen.clearScreen();
-    Brain.Screen.newLine();
-    Brain.Screen.print(DrivetrainInertial.roll());
+  Brain.Screen.newLine();
+  Brain.Screen.print(DrivetrainInertial.roll());
 
-    //cool down time
-    wait (20, msec);
+  // cool down time
+  wait(20, msec);
   // ..........................................................................
   // Insert autonomous user code here.
   // ..........................................................................
@@ -229,7 +236,7 @@ void usercontrol(void) {
 // Main will set up the competition functions and callbacks.
 //
 int main() {
-  
+
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
