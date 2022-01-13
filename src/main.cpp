@@ -75,10 +75,6 @@ void autonomous(void) {
 
   // turn to right position
   Drivetrain.turnFor(left, 85, deg, 200, rpm);
-  // run into wall to calibrate NOT TUNED
-  Drivetrain.drive(reverse, 200, rpm);
-  wait(0.5, sec);
-  Drivetrain.stop();
   
   // Push goal to other side
   Drivetrain.driveFor(forward, 100, inches, 150, rpm);
